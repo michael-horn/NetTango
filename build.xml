@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="NetTango" default="build">
+
+
+	<!-- *********************************************************** -->
+	<!--                         INIT                                -->
+	<!-- *********************************************************** -->
+	<target name="init">
+		<tstamp>
+			<format property="build.date" pattern="MM-dd-yyyy" />
+		</tstamp>
+		<property name="build.compiler" value="modern" />
+		<property name="project.name" value="NetTango" />
+		<property name="nlogo.path" value="/Applications/NetLogo 4.1.1/" />
+	</target>
+
+
+
+	<!-- *********************************************************** -->
+	<!--                         CLEAN                               -->
+	<!-- *********************************************************** -->
+	<target name="clean" depends="init">
+		<delete dir="classes" />
+		<delete file="lib/${project.name}.jar" />
+	</target>
+
+
+	<!-- *********************************************************** -->
+	<!--                       COMPILE                               -->
+	<!-- *********************************************************** -->
+	<target name="compile" depends="init">
+		<mkdir dir="classes" />
+		<chmod dir="classes" perm="755" />
+		<javac srcdir="java" destdir="classes" deprecation="true" debug="true">
+			<classpath>
+				<pathelement path="lib/grammatica-1.5.jar" />
+				<pathelement path="${nlogo.path}/NetLogo.jar" />
+			</classpath>
+		</javac>
+		<mkdir dir="classes/images" />
+		<copy todir="classes/images">
+			<fileset dir="images" includes="*.gif" />
+			<fileset dir="images" includes="*.jpg" />
+			<fileset dir="images" includes="*.png" />
+		</copy>
+		
+	</target>
+
+
+	<!-- *********************************************************** -->
+	<!--                       PACKAGE                               -->
+	<!-- *********************************************************** -->
+	<target name="package" depends="compile">
+		<mkdir dir="lib" />
+		<chmod dir="lib" perm="755" />
+		<jar jarfile="lib/${project.name}.jar" basedir="classes" update="false" />
+	</target>
+
+
+	<!-- *********************************************************** -->
+	<!--                         BUILD                               -->
+	<!-- *********************************************************** -->
+	<target name="build" depends="package" />
+
+	<target name="grammarcs" depends="init">
+	  <java jar="lib/grammatica-1.5.jar" fork="true">
+	    <arg value="NetTango/ntango.grammar" />
+	    <arg value="--csoutput" />
+            <arg value="NetTango/Parser" />
+	    <arg value="--csnamespace" />
+	    <arg value="NetTango.Parser" />
+	    <arg value="--cspublic" />
+	    <arg value="--csclassname" />
+	    <arg value="NetTango" />
+	  </java>
+	</target>
+	
+</project>
