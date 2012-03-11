@@ -1,0 +1,17 @@
+#   Ignore List   #
+###################
+*.komodoproject
+lib
+classes
+samples
+NetTango
+NetTango.suo
+NetTango.sln
+
+
+#     OS Files       #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
