@@ -1,0 +1,1 @@
+java -Xmx512M -cp classes:lib/NetLogo.jar:nlogo/lib/scala-library.jar:nlogo/lib/picocontainer.jar:nlogo/lib/asm-3.1.jar:nlogo/lib/asm-commons-3.1.jar ntango.Main
