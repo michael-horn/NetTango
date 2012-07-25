@@ -216,7 +216,9 @@ public abstract class SurfaceFrame extends JPanel
    }
 
    public void clearWidgets(int layer) {
-      layers.get(layer).clearWidgets();
+      if (layers.size() > layer) {
+         layers.get(layer).clearWidgets();
+      }
    }
 
    public void enableWidgets(int layer) {
