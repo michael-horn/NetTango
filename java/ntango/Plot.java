@@ -62,11 +62,13 @@ public class Plot extends Touchable {
          System.out.println(methods[i]);
       }
       */
-      for (org.nlogo.plot.PlotPen npen : plot.pens()) {
+      /*
+      for (org.nlogo.api.PlotPenInterface npen : plot.pens()) {
          Pen pen = new Pen(npen);
          pen.setStartX(getMinX());
          pens.add(pen);
       }
+      */
    }
 
    public Pen getPen(String name) {
@@ -79,6 +81,7 @@ public class Plot extends Touchable {
    }
 
    public void update(org.nlogo.plot.Plot plot) {
+      /*
       for (org.nlogo.plot.PlotPen npen : plot.pens()) {
          Pen pen = getPen(npen.name());
          if (pen != null) {
@@ -91,6 +94,7 @@ public class Plot extends Touchable {
             }
          }
       }
+      */
    }
 
    public void draw(Graphics2D g) {
