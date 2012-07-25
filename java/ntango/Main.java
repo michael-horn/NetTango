@@ -48,6 +48,7 @@ public class Main extends SurfaceFrame implements Tweenable, ActionListener, Key
       this.model = new Model(this);
       //this.model.load("models/wolfsheep.nlogo");
       //this.model.setup();
+      //loadModel("models/beagle/Bug Hunt Speeds.nlogo", "Bug Hunt Speeds");
       this.view = new WorldView(model);
       this.tools = new Toolbar(model);
       this.logo = Palette.createImage("/images/Logo.png");
@@ -224,7 +225,8 @@ public class Main extends SurfaceFrame implements Tweenable, ActionListener, Key
          break;
 
       case KeyEvent.VK_1:
-         loadModel("models/wolfsheep.nlogo", "Wolf Sheep Predation");
+         //loadModel("models/wolfsheep.nlogo", "Wolf Sheep Predation");
+         loadModel("models/beagle/Bug Hunt Speeds.nlogo", "Bug Hunt Speeds");
          break;
 
       case KeyEvent.VK_2:
