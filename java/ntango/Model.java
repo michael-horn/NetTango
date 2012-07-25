@@ -164,6 +164,11 @@ public class Model implements ButtonListener {
    public void setParameter(String name, int v) {
       setParameter(name, String.valueOf(v));
    }
+   
+   
+   public void doTouchDown(float touchX, float touchY) {
+      workspace.command("touch-down " + touchX + " " + touchY);
+   }
 
    public void addWatch(Turtle t) {
       if (t != null) {
