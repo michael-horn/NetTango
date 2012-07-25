@@ -140,6 +140,20 @@ public class WorldView extends Touchable {
       }
       return null;
    }
+   
+   public float getModelX(float tx) {
+      int w = getWidth() - MARGIN * 2;
+      float psize = (float)w / model.getWorldWidth();
+      return (tx - MARGIN - w/2) / psize;
+   }
+   
+   
+   public float getModelY(float ty) {
+      int w = getWidth() - MARGIN * 2;
+      int h = getHeight() - MARGIN * 2;
+      float psize = (float)w / model.getWorldWidth();
+      return (ty - MARGIN - h/2) / -psize;
+   }
 
    public void animate() {
    }
@@ -150,10 +164,13 @@ public class WorldView extends Touchable {
    
 
    public void onDown() {
+      model.doTouchDown(getModelX(touchX), getModelY(touchY));
+      /*
      Turtle t = getTurtleAt(touchX, touchY);
      if (t != null) {
         model.toggleWatch(t);
      }
+     */
    }
    public void onRelease() { }
    public void onDrag() { }
