@@ -230,7 +230,7 @@ public class Main extends SurfaceFrame implements Tweenable, ActionListener, Key
          break;
 
       case KeyEvent.VK_2:
-         loadModel("models/virus.nlogo", "Disease Model");
+         loadModel("models/beagle/Bug Hunt Camouflage.nlogo", "Bug Hunt Camouflage");
          break;
 
       case KeyEvent.VK_3:
