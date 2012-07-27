@@ -88,9 +88,9 @@ public abstract class Shapes {
       g.scale(zoom, zoom);
       g.setColor(turtle.getColor());
       g.fill(vector);
-      g.setColor(Color.DARK_GRAY);
-      g.setStroke(new java.awt.BasicStroke(1 / (PATCH_SIZE * zoom)));
-      g.draw(vector);
+      //g.setColor(Color.DARK_GRAY);
+      //g.setStroke(new java.awt.BasicStroke(1 / (PATCH_SIZE * zoom)));
+      //g.draw(vector);
    }
 
    public static void drawTurtle(Graphics2D g, Turtle turtle) {
