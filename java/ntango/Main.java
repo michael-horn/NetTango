@@ -39,7 +39,7 @@ public class Main extends SurfaceFrame implements Tweenable, ActionListener, Key
    protected WorldView view;
    protected Toolbar tools;
    protected BufferedImage logo;
-   
+
    public static Main instance;
 
    
@@ -74,7 +74,31 @@ public class Main extends SurfaceFrame implements Tweenable, ActionListener, Key
       }
       return null;
    }
+   
+   public void enterFullscreen() {
+      int w = getWidth();
+      int h = getHeight();
+      int mw = h;
+      view.setWidth(mw);
+      view.setHeight(mw);
+      view.setPosition(w/2 - mw/2, h/2 - mw/2 - 15);
+      tools.setPosition(w/2 - tools.getWidth() / 2, h - tools.getHeight() - 5);
+      view.setResizable(false);
+      view.setMovable(false);
+      view.hideBorder();
+      tools.setMovable(false);
+   }
+   
+   
+   public void exitFullscreen() {
+      view.setMovable(true);
+      view.setResizable(true);
+      view.showBorder();
+      tools.setMovable(true);
+      layout(getWidth(), getHeight());
+   }
 
+   
    //------------------------------------------------------------
    // APPLICATION EVENTS
    //------------------------------------------------------------
@@ -132,10 +156,15 @@ public class Main extends SurfaceFrame implements Tweenable, ActionListener, Key
    // DRAWING EVENTS
    //------------------------------------------------------------
    protected void drawBackground(Graphics2D g, int w, int h) {
-      g.setPaint(BACKGROUND);
-      g.fillRect(0, 0, w, h);
+      if (tools.isFullscreen()) {
+         g.setPaint(new Color(0x222222));
+         g.fillRect(0, 0, w, h);
+      } else {
+         g.setPaint(BACKGROUND);
+         g.fillRect(0, 0, w, h);
 
-      g.drawImage(logo, w - logo.getWidth() - 15, 15, null);
+         g.drawImage(logo, w - logo.getWidth() - 15, 15, null);
+      }
       g.setColor(new Color(0xbbffffff, true));
       g.setFont(new Font(null, 0, 20));
       g.drawString(model.getName(), 15, 37);
@@ -234,7 +263,7 @@ public class Main extends SurfaceFrame implements Tweenable, ActionListener, Key
          break;
 
       case KeyEvent.VK_3:
-         loadModel("models/fireflies.nlogo", "Fireflies");
+         loadModel("models/beagle/Sunflower Biomorphs.nlogo", "Sunflower Biomorphs");
          break;
 
       case KeyEvent.VK_4:
