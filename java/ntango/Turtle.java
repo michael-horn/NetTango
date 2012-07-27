@@ -161,7 +161,7 @@ public class Turtle {
 
    public void draw(Graphics2D g, float psize) {
       Shapes.drawTurtleShape(g, this);
-      
+      /*
       if (isDead()) {
          AffineTransform save = g.getTransform();
          g.translate(x * psize, y * psize);
@@ -172,6 +172,7 @@ public class Turtle {
          g.drawLine(-w/2, w/2, w/2, -w/2);
          g.setTransform(save);
       }
+      */
 	}
 
    public void drawWatch(Graphics2D g, float psize, Color wcolor) {
