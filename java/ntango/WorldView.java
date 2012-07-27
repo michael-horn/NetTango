@@ -21,6 +21,7 @@ public class WorldView extends Touchable {
 
    protected Model model;
    protected static int MARGIN = 25;
+   protected boolean showBorder = true;
    
    public WorldView(Model model) {
       this.model = model;
@@ -36,12 +37,24 @@ public class WorldView extends Touchable {
       setResizable(true);
       setRotatable(false);
    }
+   
+   
+   public void showBorder() {
+      this.showBorder = true;
+   }
+   
+   public void hideBorder() {
+      this.showBorder = false;
+   }
 
    public void draw(Graphics2D g) {
       int w = getWidth();
       int h = getHeight();
-      g.setColor(new Color(0x33ffffff, true));
-      g.fillRect(0, 0, w, h);
+      
+      if (showBorder) {
+         g.setColor(new Color(0x33ffffff, true));
+         g.fillRect(0, 0, w, h);
+      }
       
       if (!model.isLoaded()) {
          g.setFont(Palette.FONT_BODY);
@@ -51,9 +64,11 @@ public class WorldView extends Touchable {
          g.drawString(s, w/2 - fw/2, h/2);
       }
       
-      g.setColor(Color.WHITE);
-      g.setStroke(Palette.STROKE1);
-      g.drawRect(0, 0, w, h);
+      if (showBorder) {
+         g.setColor(Color.WHITE);
+         g.setStroke(Palette.STROKE1);
+         g.drawRect(0, 0, w, h);
+      }
 
       w -= MARGIN * 2;
       h -= MARGIN * 2;
@@ -118,9 +133,11 @@ public class WorldView extends Touchable {
          g.setClip(clip);
       }
 
-      g.setColor(Color.WHITE);
-      g.setStroke(Palette.STROKE1);
-      g.drawRect(x, y, w, h);
+      if (showBorder) {
+         g.setColor(Color.WHITE);
+         g.setStroke(Palette.STROKE1);
+         g.drawRect(x, y, w, h);
+      }
    }
 
    public Turtle getTurtleAt(float tx, float ty) {
