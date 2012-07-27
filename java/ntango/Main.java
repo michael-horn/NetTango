@@ -267,15 +267,15 @@ public class Main extends SurfaceFrame implements Tweenable, ActionListener, Key
          break;
 
       case KeyEvent.VK_4:
-         loadModel("models/flocking.nlogo", "Flocking");
+         loadModel("models/beagle/GenDrift P global.nlogo", "Genetic Drift Global");
          break;
 
       case KeyEvent.VK_5:
-         loadModel("models/traffic.nlogo", "Traffic");
+         loadModel("models/beagle/GenDrift P local.nlogo", "Genetic Drift Local");
          break;
 
       case KeyEvent.VK_6:
-         loadModel("models/moths.nlogo", "Moths");
+         loadModel("models/beagle/Cooperation.nlogog", "Cooperation");
          break;
 
       case KeyEvent.VK_RIGHT:
