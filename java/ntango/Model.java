@@ -166,8 +166,29 @@ public class Model implements ButtonListener {
    }
    
    
-   public void doTouchDown(float touchX, float touchY) {
-      workspace.command("touch-down " + touchX + " " + touchY);
+   public void doTouchDown(float touchX, float touchY, int touchId) {
+      if (isLoaded() && workspace.isValidIdentifier("touch-down")) {
+         workspace.command("touch-down " + touchX + " " + touchY + " " + touchId);
+      } else {
+         System.out.println("Ignoring touch-down event");
+      }
+   }
+
+   public void doTouchUp(float touchX, float touchY, int touchId) {
+      if (isLoaded() && workspace.isValidIdentifier("touch-up")) {
+         workspace.command("touch-up " + touchX + " " + touchY + " " + touchId);
+         System.out.println("touch-up " + touchX + " " + touchY + " " + touchId);
+      } else {
+         System.out.println("Ignoring touch-up event");
+      }
+   }
+
+   public void doTouchDrag(float touchX, float touchY, int touchId) {
+      if (isLoaded() && workspace.isValidIdentifier("touch-down")) {
+         workspace.command("touch-drag " + touchX + " " + touchY + " " + touchId);
+      } else {
+         System.out.println("Ignoring touch-drag event");
+      }
    }
 
    public void addWatch(Turtle t) {
