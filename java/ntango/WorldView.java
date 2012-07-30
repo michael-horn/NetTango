@@ -179,38 +179,37 @@ public class WorldView extends Touchable {
    public void endTween(String property, Tween tween) { }
    public void setTweenValue(String property, Tween tween) { }
    
-
-   public void onDown() {
-      model.doTouchDown(getModelX(touchX), getModelY(touchY));
-      /*
-     Turtle t = getTurtleAt(touchX, touchY);
-     if (t != null) {
-        model.toggleWatch(t);
-     }
-     */
-   }
-   public void onRelease() { }
    public void onDrag() { }
+   public void onRelease() { }
    public void onHover() { }
-
+   public void onDown() { }
    
-   public void touchDown(TouchFrame frame) {
-      if (frame.isSingleFinger()) {
-         onDown();
-      }
-   }
 
-   public void touchDrag(TouchFrame frame) {
-      onDrag();
+   public void touchDown(TouchFrame frame) {
       for (TouchEvent te : frame.getTouchEvents()) {
-         if (te.isTag()) {
-            Main.instance.loadModel(te);
+         if (te.isFinger()) {
+            model.doTouchDown(getModelX(te.getLocalX()),
+                              getModelY(te.getLocalY()),
+                              te.getTouchID());
          }
       }
    }
 
+   public void touchDrag(TouchFrame frame) {
+      for (TouchEvent te : frame.getTouchEvents()) {
+         model.doTouchDrag(getModelX(te.getLocalX()),
+                           getModelY(te.getLocalY()),
+                           te.getTouchID());
+      }
+   }
+
    public void touchRelease(TouchFrame frame) {
-      onRelease();
+      System.out.println("up: " + frame.getTouchEvents().size());
+      for (TouchEvent te : frame.getTouchEvents()) {
+         model.doTouchUp(getModelX(te.getLocalX()),
+                         getModelY(te.getLocalY()),
+                         te.getTouchID());
+      }
    }
 
    int mouseX;
