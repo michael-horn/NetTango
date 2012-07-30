@@ -12,7 +12,7 @@
 		</tstamp>
 		<property name="build.compiler" value="modern" />
 		<property name="project.name" value="NetTango" />
-		<property name="nlogo.path" value="/Applications/NetLogo 4.1.1/" />
+		<property name="nlogo.path" value="C:/Program Files/NetLogo 5.0.1" />
 	</target>
 
 
